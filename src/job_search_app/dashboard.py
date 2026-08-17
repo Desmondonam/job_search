@@ -4,7 +4,10 @@ from typing import Any
 
 import streamlit as st
 
-from .orchestrator import JobApplicationOrchestrator, JobRecord
+try:
+    from .orchestrator import JobApplicationOrchestrator, JobRecord
+except ImportError:  # pragma: no cover - Streamlit sometimes runs the file as a standalone script.
+    from job_search_app.orchestrator import JobApplicationOrchestrator, JobRecord
 
 
 st.set_page_config(page_title="Local Job Search Dashboard", layout="wide")
